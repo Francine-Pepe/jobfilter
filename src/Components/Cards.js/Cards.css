@@ -2,14 +2,26 @@
 
 .jobs_titles {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
 
+.job_titles_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.jobs_titles img {
+  width: 88px;
+  height: 88px;
+}
+
 .jobs_titles h4,
 .jobs_titles h3 {
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-family: "League Spartan", sans-serif;
   font-weight: 700;
   font-size: 1.2em;
@@ -29,20 +41,32 @@
 
 .job_information {
   display: flex;
-  gap: 2em;
+  gap: 1em;
 }
 
 .job_information p {
   color: hsl(180, 8%, 52%);
-  margin-top: 1em;
+  margin-top: 0.5em;
   font-family: "League Spartan", sans-serif;
   font-weight: 500;
 }
 
+.card_content_company {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 .tags {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-right: 2rem;
+}
+
+.tags_parent {
+  background-color: hsl(180, 52%, 96%);
+  padding: 0.55rem;
 }
 
 .tags_parent:hover {
@@ -53,10 +77,33 @@
   font-family: "League Spartan", sans-serif;
   font-weight: 700;
   font-size: 1.3em;
+  color: hsl(180, 29%, 50%);
 }
 
 .tagLabel:hover {
   color: hsl(180, 52%, 96%);
+}
+
+.company_tag {
+  color: hsl(180, 52%, 96%);
+}
+
+.tagLabel_new_job,
+.tagLabel_featured {
+  padding: 0.2rem 0.4rem;
+  border-radius: 15px;
+  text-transform: uppercase;
+  color: hsl(180, 52%, 96%);
+  font-weight: 700;
+  font-size: 0.8em;
+}
+
+.tagLabel_new_job {
+  background-color: hsl(180, 29%, 50%);
+}
+
+.tagLabel_featured {
+  background-color: #000000;
 }
 
 .divider {
@@ -70,7 +117,7 @@
   width: 0.3em;
   height: 0.3em;
   background-color: hsl(180, 8%, 52%);
-  margin-top: 1.7em;
+  margin-top: 1em;
   border-radius: 50%;
 }
 

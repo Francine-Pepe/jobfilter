@@ -1,6 +1,6 @@
 import { Container, VStack } from "@chakra-ui/react";
 import "./Header.css";
-import BackgroundImage from "./../images/bg-header-desktop.svg";
+import BackgroundImage from "../Header/bg-header-desktop.svg";
 
 export default function Card() {
   return (
