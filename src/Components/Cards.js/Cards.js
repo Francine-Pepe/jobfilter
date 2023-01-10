@@ -1,76 +1,138 @@
 import "./Cards.css";
 import { Box, Flex, VStack, Container, Tag, TagLabel } from "@chakra-ui/react";
-import Logo from "./../images/eyecam-co.svg";
-// import {useState, useEffect} from "react";
+import data from "../Data/data.json";
+import { useState } from "react";
 
 export default function Cards() {
+  // const [new, setNew] = useState();
+
   return (
     <>
       <VStack>
-        <Container maxW="100%" bg="hsl(180, 52%, 96%)" color="#262626" p={0}>
+        <Container
+          maxW="100%"
+          bg="hsl(180, 52%, 96%)"
+          color="#262626"
+          pt={"5rem"}
+        >
           <Flex align="center" direction="column" justify="center">
-            <Box
-              bg="white"
-              w="80%"
-              p={4}
-              m={20}
-              color="white"
-              boxShadow="lg"
-              borderRadius="lg"
-            >
-              <div className="jobs_titles">
-                <img src={Logo} alt="" />
-                <div className="card_content">
-                  <h4> Eyecam Co.</h4>
-                  <h3> Full Stack Engineer</h3>
-                  <div className="job_information">
-                    <p>3w ago</p>
-                    <hr className="bullet" />
-                    <p> Full Time</p>
-                    <hr className="bullet" />
-                    <p>Worldwide</p>
-                  </div>
-                </div>
-                <hr className="divider" />
-                <div className="tags">
-                  <a href="/">
-                    <Tag p={2.5} bg="hsl(180, 52%, 96%)" className="tags_parent">
-                      <TagLabel color="hsl(180, 29%, 50%)" className="tagLabel">
-                        Fullstack
-                      </TagLabel>
-                    </Tag>
-                  </a>
-                  <a href="/">
-                    <Tag p={2.5} bg="hsl(180, 52%, 96%)" className="tags_parent">
-                      <TagLabel color="hsl(180, 29%, 50%)" className="tagLabel">
-                        Midweight
-                      </TagLabel>
-                    </Tag>
-                  </a>
-                  <a href="/">
-                    <Tag p={2.5} bg="hsl(180, 52%, 96%)" className="tags_parent">
-                      <TagLabel color="hsl(180, 29%, 50%)" className="tagLabel">
-                        JavaScript
-                      </TagLabel>
-                    </Tag>
-                  </a>
-                  <a href="/">
-                    <Tag p={2.5} bg="hsl(180, 52%, 96%)" className="tags_parent">
-                      <TagLabel color="hsl(180, 29%, 50%)" className="tagLabel">
-                        Python{" "}
-                      </TagLabel>
-                    </Tag>
-                  </a>
-                  <a href="/">
-                    <Tag p={2.5} bg="hsl(180, 52%, 96%)" className="tags_parent">
-                      <TagLabel color="hsl(180, 29%, 50%)" className="tagLabel">
-                        Django
-                      </TagLabel>
-                    </Tag>
-                  </a>
-                </div>
-              </div>
-            </Box>
+            {data?.map(
+              ({
+                id,
+                company,
+                logo,
+                newJob,
+                featured,
+                position,
+                role,
+                level,
+                postedAt,
+                contract,
+                location,
+                languages,
+                tools,
+                index,
+              }) => {
+                return (
+                  <Box
+                    bg="white"
+                    w="80%"
+                    p={4}
+                    m={4}
+                    color="white"
+                    boxShadow="lg"
+                    borderRadius="lg"
+                    key={index}
+                  >
+                    <div className="jobs_titles">
+                      <div className="job_titles_container">
+                        <img src={logo} alt="" />
+                        <div className="card_content">
+                          <div className="card_content_company">
+                            <h4> {company}</h4>
+                            <div
+                              className="company_tag"
+                              style={{
+                                display: newJob ? "block" : "none",
+                              }}
+                            >
+                              <h6 className="tagLabel_new_job">
+                                {newJob === true ? "new!" : ""}
+                              </h6>
+                            </div>
+                            <div
+                              className="company_tag"
+                              style={{
+                                display: featured ? "block" : "none",
+                              }}
+                            >
+                              <h6 className="tagLabel_featured">
+                                {featured === true ? "featured" : ""}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <h3> {position}</h3>
+                          <div className="job_information">
+                            <p>{postedAt}</p>
+                            <hr className="bullet" />
+                            <p> {contract}</p>
+                            <hr className="bullet" />
+                            <p>{location}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="tags">
+                        <button href="/">
+                          <Tag className="tags_parent">
+                            <TagLabel className="tagLabel">{role}</TagLabel>
+                          </Tag>
+                        </button>
+                        <button href="/">
+                          <Tag className="tags_parent">
+                            <TagLabel className="tagLabel">{level}</TagLabel>
+                          </Tag>
+                        </button>
+
+                        {languages.map((languages, index) => {
+                          return (
+                            <>
+                              <button href="/" key={index}>
+                                <Tag className="tags_parent">
+                                  <TagLabel className="tagLabel">
+                                    {languages.language}
+                                  </TagLabel>
+                                </Tag>
+                              </button>
+                            </>
+                          );
+                        })}
+                        {tools.map((tools, index) => {
+                          return (
+                            <>
+                              <button
+                                href="/"
+                                style={{
+                                  display: tools.tool ? "block" : "none",
+                                }}
+                                key={index}
+                              >
+                                <Tag className="tags_parent">
+                                  <TagLabel className="tagLabel">
+                                    {tools.tool}
+                                  </TagLabel>
+                                </Tag>
+                              </button>
+                            </>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </Box>
+                );
+              }
+            )}
           </Flex>
         </Container>
       </VStack>
